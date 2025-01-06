@@ -532,10 +532,14 @@ speller:
     - derive/([tl])eng$/$1en/ # ten → teng
     - derive/([qwrtypsdfghjklzxcbnm])([aeio])ng$/$1ng/ # lng → lang、leng、ling、long
 
-frost_aux:
-  dictionary: rime_frost_aux
-  enable_sentence: false
-  enable_completion: false
-  enable_user_dict: false
-  initial_quality: 1000
-  spelling_hints: 0
+__include: octagram   #启用语言模型
+#语言模型
+octagram:
+  __patch:
+    grammar:
+      language: amz-v1n3m3-zh-hans
+      collocation_max_length: 5
+      collocation_min_length: 2
+    translator/contextual_suggestions: true
+    translator/max_homophones: 7
+    translator/max_homographs: 7
